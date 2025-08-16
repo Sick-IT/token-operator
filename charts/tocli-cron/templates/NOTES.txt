@@ -1,0 +1,12 @@
+Watch the cronjob with the following commands:
+
+export JOB_NAME=$(kubectl get cronjob --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "tocli-cron.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace {{ .Release.Namespace }} logs -f $JOB_NAME
+
+Manually execute the job once and follow logs with the following commands:
+
+export JOB_NAME=$(kubectl get cronjob --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "tocli-cron.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace {{ .Release.Namespace }} create job --from=cronjob/$JOB_NAME ${JOB_NAME}-manual
+export JOB_NAME=$(kubectl get job --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "tocli-cron.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+sleep 5;
+kubectl --namespace {{ .Release.Namespace }} logs -f job/${JOB_NAME}

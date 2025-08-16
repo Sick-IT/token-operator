@@ -1,19 +1,89 @@
-# You can override the included template(s) by including variable overrides
-# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
-# Secret Detection customization: https://docs.gitlab.com/user/application_security/secret_detection/pipeline/configure
-# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
-# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
-# Note that environment variables can be set in several places
-# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
-stages:
-- test
-- secret-detection
-sast:
-  stage: test
+
 include:
-- template: Security/SAST.gitlab-ci.yml
-- template: Security/Secret-Detection.gitlab-ci.yml
-variables:
-  SECRET_DETECTION_ENABLED: 'true'
-secret_detection:
-  stage: secret-detection
+  - project: "sickit/ci/release-please"
+    file: "/templates/release-please.yml"
+    inputs:
+      goreleaser: 1
+
+.rules-mr:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME !~ /^release-v?[0-9]+\.[0-9]+\.[0-9]+$/
+
+go lint:
+  image: golang:1.24
+  extends:
+    - .rules-mr
+  before_script:
+    - curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh
+      | sh -s -- -b $GOPATH/bin latest
+  script:
+    - make lint
+
+go test:
+  image: golang:1.24
+  extends:
+    - .rules-mr
+  script:
+    - make test
+
+go build (goreleaser snapshot):
+  image:
+    name: goreleaser/goreleaser:latest
+    entrypoint: [""]
+  extends:
+    - .rules-mr
+  needs:
+    - go lint
+    - go test
+  variables:
+    GITLAB_TOKEN: $CI_JOB_TOKEN
+    GIT_DEPTH: 0
+  script:
+    - make goreleaser-snapshot
+
+lint Helm Charts:
+  image:
+    name: drpsychick/argocd-kubectl
+    entrypoint: [""]
+  script:
+    - ct lint --all
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - !reference [.rules-mr, rules]
+
+package Helm Charts:
+  image:
+    name: drpsychick/argocd-kubectl
+    entrypoint: [""]
+  script:
+    - mkdir -p ./pages
+    - helm package charts/* --destination ./pages
+    # - helm repo index --url https://${CI_PROJECT_NAMESPACE}.gitlab.io/${CI_PROJECT_NAME} .
+    # - mv index.yaml ./pages
+    # - "echo \"User-Agent: *\nDisallow: /\" > ./pages/robots.txt"
+    - CRON_VERSION=$(ls ./pages/tocli-cron-*.tgz | sed -e 's#.*pages/tocli-cron-\(.*\)\.tgz#\1#')
+    - echo "CRON_VERSION=$CRON_VERSION" > HELM.env
+    - echo "ASSETS=$(ls -1 pages/*.tgz | tr "\n" ",")" >> HELM.env
+  artifacts:
+    reports:
+      dotenv:
+        - HELM.env
+    paths:
+      - ./pages
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+publish Helm Charts:
+  image: curlimages/curl:latest
+  needs:
+    - lint Helm Charts
+    - package Helm Charts
+  script:
+    - echo "Uploading Helm Chart tocli-cron $CRON_VERSION"
+    - |
+      curl --fail-with-body -X POST --user gitlab-ci-token:$CI_JOB_TOKEN --form "chart=@./pages/tocli-cron-$CRON_VERSION.tgz" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
