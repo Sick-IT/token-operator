@@ -1,0 +1,9 @@
+apiVersion: v2
+name: tocli-cron
+description: A Helm chart run run token-operator CLI in a regular cron job.
+type: application
+version: 0.0.1
+appVersion: 0.3.0
+maintainers:
+  - name: DrPsychick
+    email: drpsychick@drsick.net

@@ -1,0 +1,56 @@
+{{- /* run `helm-docs` (github.com/norwoodj/helm-docs) to generate README.md */ -}}
+
+# Token Operator CLI cron Helm Chart: {{ template "chart.name" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+## What is Token Operator?
+
+[Token Operator](https://gitlab.com/sickit/test-public) is a tool to automate rotation of your GitLab tokens.
+
+## Prerequisites
+
+{{ template "chart.kubeVersionLine" . }}
+
+## Requirements
+
+- A running Kubernetes cluster
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) installed and setup to use the cluster
+- [Helm](https://helm.sh/) [installed](https://github.com/helm/helm#install) and setup to use the cluster (helm init)
+
+## Deploy Token Operator
+
+The fastest way to install Token Operator using Helm is to deploy it from our public Helm chart repository.
+First, add the repository and list its contents with these commands:
+
+```console
+helm repo add toop https://gitlab.com/api/v4/projects/sickit%2Ftest-public/packages/helm/stable
+helm repo update
+helm search repo toop
+```
+
+Next, install the chart with custom values in the `tocli` namespace:
+
+```console
+helm show values toop/tocli-cron > values.yaml
+# edit values.yaml and define your token-operator config
+helm install tocli-cron toop/tocli-cron --namespace tocli --values values.yaml
+```
+
+This will deploy a single Token Operator CLi cronjob instance in the `tocli` namespace with your token-operator configuration.
+
+Unstall with the following commands:
+
+```console
+helm uninstall tocli-cron --namespace tocli
+```
+
+{{ template "chart.valuesSection" . }}
+
+## Testing
+
+Using `chart-testing` to lint, install and test the chart on a local Kubernetes (Minikube, Rancher Desktop, ...)
+
+```shell
+ct lint-and-install --all
+```

@@ -1,0 +1,112 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "tocli-cron.fullname" . }}
+  labels:
+    {{- include "tocli-cron.labels" . | nindent 4 }}
+spec:
+  concurrencyPolicy: Forbid
+  schedule: {{ .Values.schedule }}
+  failedJobsHistoryLimit: {{ .Values.failedJobHistoryLimit }}
+  successfulJobsHistoryLimit: {{ .Values.successfulJobHistoryLimit }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          {{- with .Values.podAnnotations }}
+          annotations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          labels:
+            {{- include "tocli-cron.labels" . | nindent 12 }}
+            {{- with .Values.podLabels }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+        spec:
+          restartPolicy: {{ .Values.restartPolicy | default "OnFailure" }}
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}
+          {{- with .Values.podSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}
+          containers:
+            - env:
+              - name: SOURCE_URL
+                valueFrom:
+                  configMapKeyRef:
+                    key: source_url
+                    name: {{ include "tocli-cron.fullname" . }}
+              - name: SOURCE_TOKEN
+                valueFrom:
+                  {{- with .Values.source.existingSecret }}
+                  secretKeyRef:
+                    {{- toYaml . | nindent 20}}
+                  {{- end }}
+                  {{- if .Values.source.token }}
+                  secretKeyRef:
+                    name: {{ include "tocli-cron.fullname" . }}
+                    key: source_token
+                  {{- end }}
+              - name: VAULT_TOKEN
+                valueFrom:
+                  {{- with .Values.vault.existingSecret }}
+                  secretKeyRef:
+                    {{- toYaml . | nindent 20}}
+                  {{- end }}
+                  {{- if .Values.vault.token }}
+                  secretKeyRef:
+                    name: {{ include "tocli-cron.fullname" . }}
+                    key: vault_token
+                  {{- end }}
+              {{- if .Values.vault.url }}
+              - name: VAULT_URL
+                valueFrom:
+                  configMapKeyRef:
+                    key: vault_url
+                    name: {{ include "tocli-cron.fullname" . }}
+              {{- end }}
+              name: {{ .Chart.Name }}
+              {{- with .Values.securityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              args:
+                - "--config"
+                - /config/config.yaml
+                - "--log.level"
+                - debug
+              {{- with .Values.resources }}
+              resources:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+              volumeMounts:
+                - mountPath: /config
+                  name: config
+              {{- with .Values.volumeMounts }}
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+          volumes:
+            - configMap:
+                defaultMode: 420
+                name: {{ include "tocli-cron.fullname" . }}
+              name: config
+          {{- with .Values.volumes }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}

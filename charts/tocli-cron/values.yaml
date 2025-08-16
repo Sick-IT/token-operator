@@ -1,0 +1,117 @@
+# Default values for tocli-cron.
+
+# This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
+image:
+  repository: registry.gitlab.com/sickit/test-public
+  # -- This sets the pull policy for images.
+  pullPolicy: IfNotPresent
+  # -- Overrides the image tag whose default is the chart appVersion.
+  # tag: "0.3.0"
+
+# -- This is for the secrets for pulling an image from a private repository.
+# More information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+imagePullSecrets: []
+# -- This is to override the chart name.
+nameOverride: ""
+# -- This is to override the full name.
+fullnameOverride: ""
+
+# -- Cronjob schedule, see https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#schedule-syntax
+# example: daily at 7:03
+schedule: 3 7 * * *
+successfulJobHistoryLimit: 3
+failedJobHistoryLimit: 3
+
+source:
+  # -- GitLab token with `api` access, plain text. Not recommended.
+  token: ""
+  # -- Reference an existing Secret, managed for example with external-secrets. Recommended.
+  existingSecret: {}
+    # name: "secret-name"
+    # key: "key-name"
+  # -- GitLab API URL.
+  url: "https://gitlab.com/api/v4"
+
+vault:
+  # -- Vault token, plain text. Not recommended.
+  token: ""
+  # -- Reference an existing Secret, managed for example with external-secrets. Recommended.
+  existingSecret: {}
+    # name: "secret-name"
+    # key: "key-name"
+  # -- Vault URL, required only for Hashicorp Vault.
+  url: ""
+
+# Configuration for token-operator CLI,
+# see https://gitlab.com/sickit/test-public/README.md
+config:
+  default_rotation:
+    # -- Time in hours when to rotate a token before it expires.
+    # Default: 168h (= 1 week). Also supports minutes (m) and seconds (s).
+    rotate_before: 168h
+    # -- GitLab token validity in hours when rotating a token.
+    # Default: 888h (= 5 weeks). Also supports minutes (m) and seconds (s).
+    validity: 888h
+  # A list of tokens to process in every cronjob run.
+  tokens:
+    -  # -- Token name, mentioned in logs.
+      name: mytoken
+      # -- Token state: active, inactive or deleted.
+      state: active
+      source:
+        # -- GitLab token name.
+        name: my-token
+        # -- GitLab token description.
+        description: "describe what you use it for or where you use it"
+        # -- GitLab token type: personal, project or group.
+        type: personal
+        # -- GitLab token scopes, see https://docs.gitlab.com/user/profile/personal_access_tokens/#personal-access-token-scopes.
+        scopes: ["read_api"]
+      vault:
+        # -- Vault name/path.
+        path: my-token-vault
+        # -- Vault item name or ID.
+        item: my-gitlab-token
+        # -- Vault item secret field.
+        field: password
+
+# This is for setting Kubernetes Annotations to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+podAnnotations: {}
+
+# This is for setting Kubernetes Labels to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+volumes: []
+
+volumeMounts: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

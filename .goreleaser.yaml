@@ -1,0 +1,74 @@
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+
+# The lines below are called `modelines`. See `:help modeline`
+# Feel free to remove those if you don't want/need to use them.
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+version: 2
+project_name: token-operator
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: tocli-ce
+    main: ./cmd/tocli
+    binary: tocli-ce
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm
+      - arm64
+    ignore:
+      # no armv6 for Windows and Mac
+      - goos: windows
+        goarch: arm
+      - goos: darwin
+        goarch: arm
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  version_template: "{{ .Tag }}-dev"
+
+archives:
+  - formats: [binary]
+    format_overrides:
+      - goos: windows
+        formats: [binary]
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+release:
+  gitlab:
+    name: sickit/test-public
+  name_template: "Release v{{.Version}}"
+  mode: replace
+  extra_files:
+    - glob: ./CHANGELOG.md
+    # - glob: ./pages/tocli-cron-*.tgz # TODO: figure out a way to add helm chart to goreleaser-release
+  footer: >-
+
+    ---
+
+    Released by [GoReleaser](https://github.com/goreleaser/goreleaser).
+
+gitlab_urls:
+  api: https://gitlab.com/api/v4/
+  download: https://gitlab.com
+
+  # set to true if you want to upload to the Package Registry rather than attachments
+  # Only works with GitLab 13.5+
+  use_package_registry: true
