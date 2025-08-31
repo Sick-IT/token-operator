@@ -11,7 +11,7 @@ import (
 	"github.com/hamba/logger/v2"
 	lctx "github.com/hamba/logger/v2/ctx"
 	"github.com/sethvargo/go-retry"
-	"gitlab.com/sickit/test-public/pkg/token"
+	"gitlab.com/sickit/token-operator/pkg/token"
 )
 
 const (

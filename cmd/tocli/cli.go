@@ -14,8 +14,8 @@ import (
 	lctx "github.com/hamba/logger/v2/ctx"
 	errors2 "github.com/hamba/pkg/v2/errors"
 	"github.com/urfave/cli/v3"
-	"gitlab.com/sickit/test-public/pkg/token"
-	"gitlab.com/sickit/test-public/pkg/toop"
+	"gitlab.com/sickit/token-operator/pkg/token"
+	"gitlab.com/sickit/token-operator/pkg/toop"
 )
 
 const (

@@ -9,7 +9,7 @@ import (
 	lctx "github.com/hamba/logger/v2/ctx"
 	"github.com/sethvargo/go-retry"
 	"gitlab.com/gitlab-org/api/client-go"
-	"gitlab.com/sickit/test-public/pkg/token"
+	"gitlab.com/sickit/token-operator/pkg/token"
 )
 
 const (

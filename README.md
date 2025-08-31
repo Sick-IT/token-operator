@@ -11,13 +11,13 @@ With this, the configuration files can also serve as an "inventory" of tokens, f
 
 ### Download the binary for your platform
 
-For releases and binaries, see https://gitlab.com/sickit/test-public/-/releases
+For releases and binaries, see https://gitlab.com/sickit/token-operator/-/releases
 
 ```shell
 OS=linux
 ARCH=amd64
 VERSION=0.3.0
-curl -Lo tocli https://gitlab.com/sickit/test-public/-/releases/v${VERSION}/downloads/tocli_${VERSION}_${OS}_${ARCH}
+curl -Lo tocli https://gitlab.com/sickit/token-operator/-/releases/v${VERSION}/downloads/tocli_${VERSION}_${OS}_${ARCH}
 chmod +x tocli
 ./tocli --help
 ```
@@ -25,7 +25,7 @@ chmod +x tocli
 ### Run it with docker
 
 ```shell
-docker run --rm -it registry.gitlab.com/sickit/test-public:0.3.0 --help
+docker run --rm -it registry.gitlab.com/sickit/token-operator:0.3.0 --help
 ```
 
 ## TL;DR: Rotate personal access tokens
@@ -115,7 +115,7 @@ add the PAT to the end of `tokens`, so that it is rotated last.
 
 Add, update and list versions in `token-operator` repository:
 ```console
-helm repo add toop https://gitlab.com/api/v4/projects/sickit%2Ftest-public/packages/helm/stable
+helm repo add toop https://gitlab.com/api/v4/projects/sickit%2Ftoken-operator/packages/helm/stable
 helm repo update
 helm search repo toop
 ```

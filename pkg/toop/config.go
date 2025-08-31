@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/hamba/pkg/v2/errors"
-	"gitlab.com/sickit/test-public/pkg/source"
-	"gitlab.com/sickit/test-public/pkg/token"
+	"gitlab.com/sickit/token-operator/pkg/source"
+	"gitlab.com/sickit/token-operator/pkg/token"
 )
 
 const (
