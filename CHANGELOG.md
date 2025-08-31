@@ -1,9 +1,23 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.3.3] - 2025-08-31
+
+### <!-- 0 -->🚀 Merge requests
+
+- Docs: update and clarify documentation ([9](https://gitlab.com/sickit/token-operator/-/merge_requests/9) @Pascal Sick)
+
+
+### <!-- 4 -->📚 Documentation
+
+- Update and clarify documentation ([2bbca03](https://gitlab.com/sickit/token-operator/-/commit/2bbca03121b4bf6406e37ad2d9b2031f7e84480d) @DrPsychick)
+
+
 ## [0.3.2] - 2025-08-31
 
 ### <!-- 0 -->🚀 Merge requests
+
+- Release v0.3.2 ([8](https://gitlab.com/sickit/token-operator/-/merge_requests/8) @Pascal Sick)
 
 - Chore: bump helm chart and app version ([7](https://gitlab.com/sickit/token-operator/-/merge_requests/7) @Pascal Sick)
 
@@ -61,6 +75,7 @@ All notable changes to this project will be documented in this file.
 - Public imports ([09815e6](https://gitlab.com/sickit/token-operator/-/commit/09815e6dca2250d9435a03d306e9f24bf490439b) @DrPsychick)
 
 
+[0.3.3]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.2..v0.3.3
 [0.3.2]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.1..v0.3.2
 [0.3.1]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.0..v0.3.1
 
