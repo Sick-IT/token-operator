@@ -13,7 +13,7 @@ import (
 	lctx "github.com/hamba/logger/v2/ctx"
 	"github.com/sethvargo/go-retry"
 	gitlab "gitlab.com/gitlab-org/api/client-go"
-	"gitlab.com/sickit/test-public/pkg/token"
+	"gitlab.com/sickit/token-operator/pkg/token"
 )
 
 func NewGitLabSource(ctx context.Context, url, token string, obsvr *observe.Observer, opts ...GitLabOption) (*GitLab, error) {

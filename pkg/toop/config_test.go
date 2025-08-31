@@ -9,8 +9,8 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/goccy/go-yaml"
 	"github.com/stretchr/testify/assert"
-	"gitlab.com/sickit/test-public/pkg/source"
-	"gitlab.com/sickit/test-public/pkg/token"
+	"gitlab.com/sickit/token-operator/pkg/source"
+	"gitlab.com/sickit/token-operator/pkg/token"
 )
 
 //go:embed full-config.yaml

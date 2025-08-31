@@ -2,7 +2,7 @@
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: registry.gitlab.com/sickit/test-public
+  repository: registry.gitlab.com/sickit/token-operator
   # -- This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion.
@@ -43,7 +43,7 @@ vault:
   url: ""
 
 # Configuration for token-operator CLI,
-# see https://gitlab.com/sickit/test-public/README.md
+# see https://gitlab.com/sickit/token-operator/README.md
 config:
   default_rotation:
     # -- Time in hours when to rotate a token before it expires.

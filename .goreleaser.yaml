@@ -53,7 +53,7 @@ changelog:
 
 release:
   gitlab:
-    name: sickit/test-public
+    name: sickit/token-operator
   name_template: "Release v{{.Version}}"
   mode: replace
   extra_files:

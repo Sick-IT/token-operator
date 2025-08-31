@@ -8,9 +8,9 @@ import (
 	"github.com/hamba/cmd/v3/observe"
 	"github.com/hamba/cmd/v3/term"
 	"github.com/urfave/cli/v3"
-	"gitlab.com/sickit/test-public"
-	"gitlab.com/sickit/test-public/pkg/source"
-	"gitlab.com/sickit/test-public/pkg/vault"
+	"gitlab.com/sickit/token-operator"
+	"gitlab.com/sickit/token-operator/pkg/source"
+	"gitlab.com/sickit/token-operator/pkg/vault"
 )
 
 func newTerm() term.Term {

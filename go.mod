@@ -1,4 +1,4 @@
-module gitlab.com/sickit/test-public
+module gitlab.com/sickit/token-operator
 
 go 1.24.3
 

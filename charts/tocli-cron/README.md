@@ -4,7 +4,7 @@
 
 ## What is Token Operator?
 
-[Token Operator](https://gitlab.com/sickit/test-public) is a tool to automate rotation of your GitLab tokens.
+[Token Operator](https://gitlab.com/sickit/token-operator) is a tool to automate rotation of your GitLab tokens.
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ The fastest way to install Token Operator using Helm is to deploy it from our pu
 First, add the repository and list its contents with these commands:
 
 ```console
-helm repo add toop https://gitlab.com/api/v4/projects/sickit%2Ftest-public/packages/helm/stable
+helm repo add toop https://gitlab.com/api/v4/projects/sickit%2Ftoken-operator/packages/helm/stable
 helm repo update
 helm search repo toop
 ```
@@ -60,7 +60,7 @@ helm uninstall tocli-cron --namespace tocli
 | failedJobHistoryLimit | int | `3` |  |
 | fullnameOverride | string | `""` | This is to override the full name. |
 | image.pullPolicy | string | `"IfNotPresent"` | This sets the pull policy for images. |
-| image.repository | string | `"registry.gitlab.com/sickit/test-public"` |  |
+| image.repository | string | `"registry.gitlab.com/sickit/token-operator"` |  |
 | imagePullSecrets | list | `[]` | This is for the secrets for pulling an image from a private repository. More information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/ |
 | nameOverride | string | `""` | This is to override the chart name. |
 | nodeSelector | object | `{}` |  |

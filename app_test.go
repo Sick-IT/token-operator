@@ -7,9 +7,9 @@ import (
 
 	"github.com/hamba/logger/v2"
 	"github.com/hamba/statter/v2"
-	"gitlab.com/sickit/test-public/pkg/source"
-	"gitlab.com/sickit/test-public/pkg/token"
-	"gitlab.com/sickit/test-public/pkg/vault"
+	"gitlab.com/sickit/token-operator/pkg/source"
+	"gitlab.com/sickit/token-operator/pkg/token"
+	"gitlab.com/sickit/token-operator/pkg/vault"
 	"go.opentelemetry.io/otel/trace"
 )
 
