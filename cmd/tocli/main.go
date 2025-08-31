@@ -58,7 +58,7 @@ var flags = cmd.Flags{
 	&cli.StringFlag{
 		Name:    flagVaultURL,
 		Value:   "",
-		Usage:   "The Vault API URL to use, required for Hashicorp Vault",
+		Usage:   "The Vault API URL to use, required for HashiCorp Vault",
 		Sources: cli.EnvVars(strcase.ToSNAKE(flagVaultURL)),
 	},
 	&cli.StringFlag{
@@ -102,10 +102,13 @@ EXAMPLES:
 	tocli --source.token glpat-.... --vault.token ops-ey... \
 		--config personal-tokens.yaml --dry-run
 
-	# Rotate group tokens on a self-hosted GitLab using 1password service account (EE version)
+	# Rotate tokens on a self-hosted GitLab using HashiCorp Vault (EE version)
 	tocli --source.url https://gitlab.example.com/api/v4 --source.token glpat-.... \
-		--vault.token ops-ey... --license ... \
-		--config mygroup.yaml --dry-run
+		--vault.type hashicorp --vault.url https://vault.example.com --vault.token ... \
+		--config gitlab-example-tokens.yaml --dry-run
+
+	# Example configuration
+	https://gitlab.com/sickit/token-operator/-/blob/main/pkg/toop/full-config.yaml
 
 SUPPORT: mailto:toop@sickit.eu
 

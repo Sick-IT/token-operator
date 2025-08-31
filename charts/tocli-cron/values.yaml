@@ -39,11 +39,12 @@ vault:
   existingSecret: {}
     # name: "secret-name"
     # key: "key-name"
-  # -- Vault URL, required only for Hashicorp Vault.
+  # -- Vault URL, required only for HashiCorp Vault.
   url: ""
 
 # Configuration for token-operator CLI,
-# see https://gitlab.com/sickit/token-operator/README.md
+# see https://gitlab.com/sickit/token-operator/-/blob/main/README.md
+# -- Token-operator configuration, see https://gitlab.com/sickit/token-operator/-/blob/main/pkg/toop/full-config.yaml
 config:
   default_rotation:
     # -- Time in hours when to rotate a token before it expires.
