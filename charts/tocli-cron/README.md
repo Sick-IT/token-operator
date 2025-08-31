@@ -46,6 +46,7 @@ helm uninstall tocli-cron --namespace tocli
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| config | object | `{"default_rotation":{"rotate_before":"168h","validity":"888h"},"tokens":[{"name":"mytoken","source":{"description":"describe what you use it for or where you use it","name":"my-token","scopes":["read_api"],"type":"personal"},"state":"active","vault":{"field":"password","item":"my-gitlab-token","path":"my-token-vault"}}]}` | Token-operator configuration, see https://gitlab.com/sickit/token-operator/-/blob/main/pkg/toop/full-config.yaml |
 | config.default_rotation.rotate_before | string | `"168h"` | Time in hours when to rotate a token before it expires. Default: 168h (= 1 week). Also supports minutes (m) and seconds (s). |
 | config.default_rotation.validity | string | `"888h"` | GitLab token validity in hours when rotating a token. Default: 888h (= 5 weeks). Also supports minutes (m) and seconds (s). |
 | config.tokens[0].name | string | `"mytoken"` | Token name, mentioned in logs. |

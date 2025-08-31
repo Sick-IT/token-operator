@@ -1,11 +1,12 @@
-# Token Operator
+# GitLab Token Operator
 
 ## Purpose
 
-Token-operator regularly rotates your GitLab tokens and updates them in your 1password vault
+Token-operator regularly rotates your GitLab tokens and updates them in your **1Password** or **HashiCorp** vault,
 in order to reduce token rotation maintenance, increase security and avoid tokens with long validity in case they get leaked.
 
 With this, the configuration files can also serve as an "inventory" of tokens, for example for regular reviews and audits.
+Fine-grained access control and auditing features of your vault instance allow you to provide safe access to your GitLab tokens.
 
 ## Get `tocli` (token-operator cli)
 
@@ -16,7 +17,7 @@ For releases and binaries, see https://gitlab.com/sickit/token-operator/-/releas
 ```shell
 OS=linux
 ARCH=amd64
-VERSION=0.3.0
+VERSION=0.3.2
 curl -Lo tocli https://gitlab.com/sickit/token-operator/-/releases/v${VERSION}/downloads/tocli_${VERSION}_${OS}_${ARCH}
 chmod +x tocli
 ./tocli --help
@@ -25,7 +26,7 @@ chmod +x tocli
 ### Run it with docker
 
 ```shell
-docker run --rm -it registry.gitlab.com/sickit/token-operator:0.3.0 --help
+docker run --rm -it registry.gitlab.com/sickit/token-operator:0.3.2 --help
 ```
 
 ## TL;DR: Rotate personal access tokens
@@ -33,10 +34,10 @@ docker run --rm -it registry.gitlab.com/sickit/token-operator:0.3.0 --help
 Prerequisites
 
 - Create a personal access token in GitLab with scopes `api` for the token-operator
-- [Create a 1password service](https://developer.1password.com/docs/service-accounts/get-started/) account with read/write access to the vault where you want to store your GitLab tokens.
+- [Create a 1Password service account](https://developer.1password.com/docs/service-accounts/get-started/) with read/write access to the vault where you want to store your GitLab tokens.
 
 The PAT you want to rotate must already exist, so create a personal access token in GitLab which you want to rotate
-(you don't need to save the token itself).
+(you don't need to save the token itself). Of course, you can also "self-rotate" the token you use for token-operator.
 
 Then create a configuration for your personal access tokens (`personal-tokens.yaml`, also supports JSON)
 
@@ -58,7 +59,7 @@ tokens:
       field: password
 ```
 
-Run token-operator with the GitLab PAT you created for the token-operator and the 1password service account token
+Run token-operator with the GitLab PAT you created for the token-operator and the 1Password service account token
 
 ```shell
 tocli --source.token glpat-.... --vault.token ops-ey... \
@@ -74,7 +75,7 @@ Prerequisites
 
 - Create a personal access token in GitLab with scopes `api` for the token-operator.
   The person creating the PAT must have permissions to edit access tokens in the group or project.
-- [Create a 1password service account](https://developer.1password.com/docs/service-accounts/get-started/) with read/write access to the vault where you want to store your GitLab tokens.
+- [Create a 1Password service account](https://developer.1password.com/docs/service-accounts/get-started/) with read/write access to the vault where you want to store your GitLab tokens.
 
 Create a configuration for your group/project access tokens (`group-tokens.yaml`, also supports JSON)
 
@@ -98,7 +99,7 @@ tokens:
       field: password
 ```
 
-Run token-operator with the GitLab PAT you created for the token-operator and the 1password service account token
+Run token-operator with the GitLab PAT you created for the token-operator and the 1Password service account token
 
 ```shell
 tocli --source.token glpat-.... --vault.token ops-ey... \
@@ -135,13 +136,14 @@ helm uninstall tocli-cron --namespace tocli
 ## Get the enterprise version
 
 The enterprise version supports `group` and `project` GitLab tokens as well as `hashicorp` vault.
+Additional features may be requested as well. 
 
 Contact us at: toop@sickit.eu
 
 ## How it works
 
-This shows the application flow, checking the vault item first, so that it fails early if we don't have access.
-Main flow is left, once the token and vault item exist.
+This shows the application flow, checking the vault item first, so that it fails early if we don't have access to the vault.
+The main flow is left, once the token and vault item exist.
 
 ```mermaid
 flowchart TD
