@@ -29,6 +29,17 @@ chmod +x tocli
 docker run --rm -it registry.gitlab.com/sickit/token-operator:0.3.2 --help
 ```
 
+## Use helper script to dump all tokens
+
+We provide a little shell script to dump existing tokens in the format you need them.
+Only an admin PAT can list tokens of users.
+
+```shell
+export GITLAB_HOST=https://gitlab.com
+export GITLAB_TOKEN=...
+./scripts/dump-tokens.sh 2> /dev/null | tee alltokens.yaml
+```
+
 ## TL;DR: Rotate personal access tokens
 
 Prerequisites
