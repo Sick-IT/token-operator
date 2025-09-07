@@ -1,14 +1,18 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [0.3.3] - 2025-08-31
+## [0.3.3] - 2025-09-07
 
 ### <!-- 0 -->🚀 Merge requests
+
+- Docs: script to dump all GitLab tokens ([11](https://gitlab.com/sickit/token-operator/-/merge_requests/11) @Pascal Sick)
 
 - Docs: update and clarify documentation ([9](https://gitlab.com/sickit/token-operator/-/merge_requests/9) @Pascal Sick)
 
 
 ### <!-- 4 -->📚 Documentation
+
+- Script to dump all GitLab tokens ([99fda83](https://gitlab.com/sickit/token-operator/-/commit/99fda83ac18cdf8acc672a7dd61081903fd498e2) @DrPsychick)
 
 - Update and clarify documentation ([2bbca03](https://gitlab.com/sickit/token-operator/-/commit/2bbca03121b4bf6406e37ad2d9b2031f7e84480d) @DrPsychick)
 
