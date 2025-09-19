@@ -100,5 +100,6 @@ trigger renovate:
   trigger:
     project: sickit/ci/renovate-bot
   variables:
+    RENOVATE_AUTODISCOVER: false
     RENOVATE_EXTRA_FLAGS: $CI_PROJECT_PATH
   when: manual
