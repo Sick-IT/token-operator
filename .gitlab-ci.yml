@@ -26,6 +26,7 @@ go lint:
     - make lint
   rules:
     - if: $CI_COMMIT_BRANCH
+    - !reference [.rules-release-mr, rules]
 
 go test:
   image: golang:1.24
@@ -33,6 +34,7 @@ go test:
     - make test
   rules:
     - if: $CI_COMMIT_BRANCH
+    - !reference [.rules-release-mr, rules]
 
 go build (goreleaser snapshot):
   image:
@@ -47,7 +49,6 @@ go build (goreleaser snapshot):
   script:
     - make goreleaser-snapshot
   rules:
-    - !reference [.rules-mr, rules]
     - !reference [.rules-release-mr, rules]
 
 lint Helm Charts:
