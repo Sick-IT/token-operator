@@ -19,6 +19,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 8 -->⚙️ Miscellaneous Tasks
 
+- Update module gitlab.com/gitlab-org/api/client-go to v0.146.0 ([58a4dde](https://gitlab.com/sickit/token-operator/-/commit/58a4dde6ca92141180ebe9029254c1cbd5c8a131) @Renovate Bot)
+
 - Update module github.com/hamba/pkg/v2 to v2.14.0 ([6230ba4](https://gitlab.com/sickit/token-operator/-/commit/6230ba48652867c55af9aeeea335fec0d55cb5a3) @Renovate Bot)
 
 - Update module github.com/hamba/cmd/v3 to v3.1.0 ([3cc5be5](https://gitlab.com/sickit/token-operator/-/commit/3cc5be5f9651e70430c44aa1205691c77a32c902) @Renovate Bot)
