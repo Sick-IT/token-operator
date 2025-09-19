@@ -1,7 +1,7 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [0.3.3] - 2025-09-07
+## [0.3.3] - 2025-09-19
 
 ### <!-- 0 -->🚀 Merge requests
 
@@ -15,6 +15,11 @@ All notable changes to this project will be documented in this file.
 - Script to dump all GitLab tokens ([99fda83](https://gitlab.com/sickit/token-operator/-/commit/99fda83ac18cdf8acc672a7dd61081903fd498e2) @DrPsychick)
 
 - Update and clarify documentation ([2bbca03](https://gitlab.com/sickit/token-operator/-/commit/2bbca03121b4bf6406e37ad2d9b2031f7e84480d) @DrPsychick)
+
+
+### <!-- 8 -->⚙️ Miscellaneous Tasks
+
+- Update module github.com/hamba/cmd/v3 to v3.1.0 ([3cc5be5](https://gitlab.com/sickit/token-operator/-/commit/3cc5be5f9651e70430c44aa1205691c77a32c902) @Renovate Bot)
 
 
 ## [0.3.2] - 2025-08-31
