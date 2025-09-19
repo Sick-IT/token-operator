@@ -5,9 +5,16 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->🚀 Merge requests
 
+- Fix: review feedback & refactor pipeline ([16](https://gitlab.com/sickit/token-operator/-/merge_requests/16) @Pascal Sick)
+
 - Docs: script to dump all GitLab tokens ([11](https://gitlab.com/sickit/token-operator/-/merge_requests/11) @Pascal Sick)
 
 - Docs: update and clarify documentation ([9](https://gitlab.com/sickit/token-operator/-/merge_requests/9) @Pascal Sick)
+
+
+### <!-- 2 -->🐛 Bug Fixes
+
+- Review feedback & refactor pipeline ([3487687](https://gitlab.com/sickit/token-operator/-/commit/34876875a04fa9d488a347e4fd67e4dd28910985) @Pascal Sick)
 
 
 ### <!-- 4 -->📚 Documentation
