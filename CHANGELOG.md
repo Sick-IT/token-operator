@@ -1,9 +1,43 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.3.3] - 2025-09-19
+
+### <!-- 0 -->🚀 Merge requests
+
+- Fix: review feedback & refactor pipeline ([16](https://gitlab.com/sickit/token-operator/-/merge_requests/16) @Pascal Sick)
+
+- Docs: script to dump all GitLab tokens ([11](https://gitlab.com/sickit/token-operator/-/merge_requests/11) @Pascal Sick)
+
+- Docs: update and clarify documentation ([9](https://gitlab.com/sickit/token-operator/-/merge_requests/9) @Pascal Sick)
+
+
+### <!-- 2 -->🐛 Bug Fixes
+
+- Review feedback & refactor pipeline ([3487687](https://gitlab.com/sickit/token-operator/-/commit/34876875a04fa9d488a347e4fd67e4dd28910985) @Pascal Sick)
+
+
+### <!-- 4 -->📚 Documentation
+
+- Script to dump all GitLab tokens ([99fda83](https://gitlab.com/sickit/token-operator/-/commit/99fda83ac18cdf8acc672a7dd61081903fd498e2) @DrPsychick)
+
+- Update and clarify documentation ([2bbca03](https://gitlab.com/sickit/token-operator/-/commit/2bbca03121b4bf6406e37ad2d9b2031f7e84480d) @DrPsychick)
+
+
+### <!-- 8 -->⚙️ Miscellaneous Tasks
+
+- Update module gitlab.com/gitlab-org/api/client-go to v0.146.0 ([58a4dde](https://gitlab.com/sickit/token-operator/-/commit/58a4dde6ca92141180ebe9029254c1cbd5c8a131) @Renovate Bot)
+
+- Update module github.com/hamba/pkg/v2 to v2.14.0 ([6230ba4](https://gitlab.com/sickit/token-operator/-/commit/6230ba48652867c55af9aeeea335fec0d55cb5a3) @Renovate Bot)
+
+- Update module github.com/hamba/cmd/v3 to v3.1.0 ([3cc5be5](https://gitlab.com/sickit/token-operator/-/commit/3cc5be5f9651e70430c44aa1205691c77a32c902) @Renovate Bot)
+
+
 ## [0.3.2] - 2025-08-31
 
 ### <!-- 0 -->🚀 Merge requests
+
+- Release v0.3.2 ([8](https://gitlab.com/sickit/token-operator/-/merge_requests/8) @Pascal Sick)
 
 - Chore: bump helm chart and app version ([7](https://gitlab.com/sickit/token-operator/-/merge_requests/7) @Pascal Sick)
 
@@ -61,6 +95,7 @@ All notable changes to this project will be documented in this file.
 - Public imports ([09815e6](https://gitlab.com/sickit/token-operator/-/commit/09815e6dca2250d9435a03d306e9f24bf490439b) @DrPsychick)
 
 
+[0.3.3]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.2..v0.3.3
 [0.3.2]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.1..v0.3.2
 [0.3.1]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.0..v0.3.1
 
