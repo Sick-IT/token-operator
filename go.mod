@@ -9,7 +9,7 @@ require (
 	github.com/goccy/go-yaml v1.18.0
 	github.com/hamba/cmd/v3 v3.1.0
 	github.com/hamba/logger/v2 v2.9.0
-	github.com/hamba/pkg/v2 v2.13.2
+	github.com/hamba/pkg/v2 v2.14.0
 	github.com/hamba/statter/v2 v2.8.0
 	github.com/joho/godotenv v1.5.1
 	github.com/sethvargo/go-retry v0.3.0

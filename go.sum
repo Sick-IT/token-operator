@@ -79,6 +79,8 @@ github.com/hamba/logger/v2 v2.9.0 h1:gLa4AuoQ17XTBovyIewOK7sALX/sHDJO3kfPUQBUA2o
 github.com/hamba/logger/v2 v2.9.0/go.mod h1:i+ohrYJ5XKaicZAJD+64lsYd3ZqLOjFXzt210lmZ/iQ=
 github.com/hamba/pkg/v2 v2.13.2 h1:LJAam6n9jORY6p2JiFXuAArYjY5Zazw8VS6GpN/nsQU=
 github.com/hamba/pkg/v2 v2.13.2/go.mod h1:VOMnsMxUX/cNEQUACicG/pEJ92tTxlNGXDU6dbrf27Q=
+github.com/hamba/pkg/v2 v2.14.0 h1:GRQgFdhfRKiHP+GdrFh+hSA0h5PEPYP9Fg5xDut3BLQ=
+github.com/hamba/pkg/v2 v2.14.0/go.mod h1:+G95MkGxieTZxZers206PhpFe857sI/KGokxsW7/hNI=
 github.com/hamba/statter/v2 v2.7.0 h1:9CnjJ5PcxOzIVJSAFSJm0lnUUBjTo3psV9nn+yZ1cMM=
 github.com/hamba/statter/v2 v2.7.0/go.mod h1:SJPj0HCM+z7GxnoG+YBgN87SP0GVJ5YPjqHINrgqFYE=
 github.com/hamba/statter/v2 v2.8.0 h1:5rLx+e/wODnvtkzpmEQim4hHcWEJbeI+KJuPHTkQCLQ=
