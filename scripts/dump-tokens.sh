@@ -6,7 +6,7 @@
 
 set -Eo pipefail
 
-curl --version > /dev/null || { echo "'curl' is required"; exit 1; }
+curl --version > /dev/null || { echo "'curl' >= 7.87.0 is required"; exit 1; }
 jq --version > /dev/null || { echo "'jq' is required"; exit 1; }
 yq --version > /dev/null || { echo "'yq' is required"; exit 1; }
 
