@@ -22,7 +22,8 @@ For example: `--dry-run` or `DRY_RUN`, see `tocli --help`.
 
 - `dry_run`: check source and vault, but do not change anything.
 - `force_rotate`: sets `rotate_before` to more than one year for all tokens to force rotation.
-- `license`: an enterprise license key for HashiCorp Vault or group/project access tokens.
+- `license`: an Enterprise license key for HashiCorp Vault or group/project access tokens.
+  For an Enterprise license key, please contact us at toop@sickit.eu.
 - `source.url`: the API URL of the GitLab instance.
 - `vault.type`: `1password` (default) or `hashicorp`.
 - `vault.url`: the HashiCorp Vault URL.
@@ -54,7 +55,8 @@ The source is a GitLab access token.
   or https://docs.gitlab.com/user/group/settings/group_access_tokens/#scopes-for-a-group-access-token 
   or https://docs.gitlab.com/user/project/settings/project_access_tokens/#scopes-for-a-project-access-token
 - `owner`: required for `type: group|project`, the full path of the group or project.
-- `role`: required for `type: group|project`, defines the access role of the access token.
+- `role`: required for `type: group|project`, defines the access role of the access token, see
+  https://docs.gitlab.com/user/permissions/#roles
 
 ### Defining vault
 

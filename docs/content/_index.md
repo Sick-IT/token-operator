@@ -10,7 +10,7 @@ Here's an overview of our documentation:
 - [Introduction](./intro)
 - [Configuration](./configuration)
 
-
+For an Enterprise license key, please contact us at toop@sickit.eu.
 
 
 
