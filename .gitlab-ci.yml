@@ -17,6 +17,16 @@ include:
   rules:
     - if: $CI_COMMIT_TAG
 
+.pages:
+  image: hugomods/hugo:exts-0.150.0
+  before_script:
+    - hugo version
+  script:
+    - hugo --minify --source ./docs
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - !reference [.rules-release-mr, rules]
+
 go lint:
   image: golang:1.24
   before_script:
@@ -97,15 +107,17 @@ publish Helm Charts:
     - if: $CI_COMMIT_TAG
 
 build pages:
-  image: hugomods/hugo:exts
-  before_script:
-    - hugo version
-  script:
-    - hugo --minify --source ./docs
-  # pages: true
+  extends:
+    - .pages
+
+deploy pages:
+  extends:
+    - .pages
+  pages:
+    publish: docs/public
   rules:
-    - if: $CI_COMMIT_BRANCH
-    - !reference [.rules-release-mr, rules]
+    - !reference [.rules-mr, rules]
+    - if: $CI_COMMIT_TAG
 
 trigger renovate:
   trigger:
