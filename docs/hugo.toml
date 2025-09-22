@@ -1,0 +1,33 @@
+baseURL = 'https://toop.sickit.eu/'
+languageCode = 'en-us'
+title = 'token-operator'
+
+[module]
+    [[module.imports]]
+        path = 'github.com/McShelby/hugo-theme-relearn'
+
+[params]
+    ordersectionsby = 'weight'
+    disableShortcutsTitle = true
+    themeVariant = ['auto', 'zen-light', 'zen-dark', 'learn', 'neon']
+
+[menu]
+    [[menu.shortcuts]]
+        name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
+        identifier = "github-repo"
+        url = "https://github.com/sick-it/token-operator"
+        weight = 10
+    [[menu.shortcuts]]
+        name = "<i class='fa-fw fab fa-gitlab'></i> GitLab repo"
+        identifier = "gitlab-repo"
+        url = "https://gitlab.com/sickit/token-operator"
+        weight = 20
+
+[outputs]
+    # add `json` to the home to support Lunr search; This is a mandatory setting
+    # for the search functionality
+    # add `print` to home, section and page to activate the feature to print whole
+    # chapters
+    home = ["html", "rss"]
+    section = ["html", "rss"]
+    page = ["html", "rss"]
