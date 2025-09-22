@@ -8,6 +8,8 @@ in order to reduce token rotation maintenance, increase security and avoid token
 With this, the configuration files can also serve as an "inventory" of tokens, for example for regular reviews and audits.
 Fine-grained access control and auditing features of your vault instance allow you to provide safe access to your GitLab tokens.
 
+See our documentation site [https://toop.sickit.eu](https://toop.sickit.eu) for more detailed documentation.
+
 ## Get `tocli` (token-operator cli)
 
 ### Download the binary for your platform
