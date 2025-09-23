@@ -3,8 +3,9 @@ date = '2025-09-21T21:15:47+02:00'
 title = "Introduction"
 linkTitle = "Introduction"
 description = "Introduction to token-operator"
-alwaysopen = true
 weight = 10
+[params]
+  menuPre = "<i class='fa-fw fas fa-star'></i> "
 +++
 
 ## Introduction to token-operator

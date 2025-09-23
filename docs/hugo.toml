@@ -8,7 +8,6 @@ title = 'token-operator'
 
 [params]
     ordersectionsby = 'weight'
-    disableShortcutsTitle = true
     themeVariant = ['auto', 'zen-light', 'zen-dark', 'learn', 'neon']
 
 [menu]
@@ -24,10 +23,6 @@ title = 'token-operator'
         weight = 20
 
 [outputs]
-    # add `json` to the home to support Lunr search; This is a mandatory setting
-    # for the search functionality
-    # add `print` to home, section and page to activate the feature to print whole
-    # chapters
     home = ["html", "rss"]
     section = ["html", "rss"]
     page = ["html", "rss"]

@@ -1,9 +1,7 @@
 +++
 date = '2025-09-21T21:15:47+02:00'
 title = "Initial setup"
-weight = 1
-[build]
-    # render = 'never'
+weight = 10
 +++
 
 For the initial setup we will

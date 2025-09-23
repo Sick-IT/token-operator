@@ -3,6 +3,8 @@ date = '2025-09-21T21:15:47+02:00'
 title = "Configuration"
 linkTitle = "Configuration"
 weight = 20
+[params]
+  menuPre = "<i class='fa-fw fas fa-gears'></i> "
 +++
 
 ## Example configuration
