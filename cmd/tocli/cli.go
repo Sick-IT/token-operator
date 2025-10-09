@@ -44,7 +44,6 @@ func runCli(ctx context.Context, cmd *cli.Command) error {
 	dec := yaml.NewDecoder(
 		strings.NewReader(string(confFile)),
 		yaml.Validator(validate),
-		yaml.Strict(),
 	)
 	err = dec.Decode(&config)
 	if err != nil {
