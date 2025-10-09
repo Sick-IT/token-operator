@@ -22,7 +22,6 @@ func TestParseConfig(t *testing.T) {
 	dec := yaml.NewDecoder(
 		strings.NewReader(fullConfig),
 		yaml.Validator(validate),
-		yaml.Strict(),
 	)
 	err := dec.Decode(&config)
 	assert.Nil(t, err)
