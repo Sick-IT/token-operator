@@ -1,24 +1,24 @@
-default_rotation: # optional: define a default rotation for all source tokens
-  rotate_before: 24h
-  validity: 48h # note: GitLab tokens expire on a calendar date, not a timestamp
 dry_run: true
 force_rotate: true
-license: "EE-license" # required for source tokens with type=group|project or vault type=hashicorp
+license: "Enterprise-license" # required for source tokens with type=group|project or vault type=hashicorp
 source:
   url: "https://gitlab.com/api/v4"
 vault:
-  type: "1password" # one-of: 1password (default), hashicorp (EE-version)
+  type: "1password" # one-of: 1password (default), hashicorp (Enterprise-version)
   url: "" # required for type=hashicorp
+default_rotation: # optional, define a default rotation for all source tokens
+  rotate_before: 24h
+  validity: 48h # note, GitLab tokens expire on a calendar date, not a timestamp
 tokens: # required, defines the tokens to be processed
   - name: "some name"
-    state: active # one-of: active,inactive,deleted
+    state: active # one-of active,inactive,deleted
     rotation: # override "default_rotation", required if no "default_rotation" has been defined
-      rotate_before: 168h # 1 week: token-operator will attempt rotation 1 week before it expires
+      rotate_before: 168h # 1 week, token-operator will attempt rotation 1 week before it expires
       validity: 840h # 5 weeks
     source:
       name: "token name"
       description: "token description"
-      type: "project" # one-of: personal, group, project
+      type: "project" # one-of personal, group, project
       owner: "group/project" # required for type=group|project
       role: "developer" # required for type=group|project
       scopes: # required
@@ -27,7 +27,7 @@ tokens: # required, defines the tokens to be processed
     vault:
       # orgID: "organization-ID", optional, only required for bitwarden
       path: "vault-path"
-      # pathID: "vault-path-ID", optional, used to find vault if given
+      # pathID: "vault-path-ID", optional, used to uniquely identify vault/project if given
       item: "vault item name"
-      # itemID: "vault-item-ID", optional, used to find item if given
+      # itemID: "vault-item-ID", optional, used to uniquely identify item/secret if given
       field: "vault item field"
