@@ -47,7 +47,16 @@ type Source struct {
 
 // Vault defines the target vault item for a token.
 type Vault struct {
-	Path  string `yaml:"path" validate:"required"`
-	Item  string `yaml:"item" validate:"required"`
+	// OrgID is an optional organization ID, required for bitwarden
+	OrgID string `yaml:"orgID"`
+	// PathID is an optional vault or project ID, used by 1password as vault ID
+	PathID string `yaml:"pathID"`
+	// ItemID is an optional ID for a vault item, used by 1password as item ID
+	ItemID string `yaml:"itemID"`
+	// Path is the name of the vault or project
+	Path string `yaml:"path" validate:"required"`
+	// Item is the name of the vault item
+	Item string `yaml:"item" validate:"required"`
+	// Field is the name of the password field, does not apply for bitwarden
 	Field string `yaml:"field" validate:"required"`
 }
