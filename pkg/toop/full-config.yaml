@@ -25,6 +25,9 @@ tokens: # required, defines the tokens to be processed
         - "api"
         - "write_repository"
     vault:
+      # orgID: "organization-ID", optional, only required for bitwarden
       path: "vault-path"
+      # pathID: "vault-path-ID", optional, used to find vault if given
       item: "vault item name"
+      # itemID: "vault-item-ID", optional, used to find item if given
       field: "vault item field"

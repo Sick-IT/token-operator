@@ -2,6 +2,7 @@ package vault
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strings"
 	"time"
@@ -53,33 +54,54 @@ func (o *OnePassword) WithDryRun(dryRun bool) {
 	o.dryRun = dryRun
 }
 
-func (o *OnePassword) GetItem(item *token.Vault) (*Item, error) {
-	path := fmt.Sprintf("op://%s/%s/%s", item.Path, item.Item, item.Field)
-	o.log.Info("checking 1password vault item", lctx.Str("path", path))
+func (o *OnePassword) GetItem(vault *token.Vault) (*Item, error) {
+	opvault, err := o.findVault(vault)
+	if err != nil {
+		if !errors.Is(err, ErrVaultNotFound) {
+			return nil, fmt.Errorf("failed to find 1password vault: %w", err)
+		}
+		return nil, ErrVaultNotFound
+	}
+
+	opitem, err := o.findItem(opvault.ID, vault)
+	if err != nil {
+		if !errors.Is(err, ErrItemNotFound) {
+			return nil, fmt.Errorf("failed to find 1password vault item: %w", err)
+		}
+		return nil, ErrItemNotFound
+	}
 
 	b := o.backoff
-	secret := ""
-	err := retry.Do(o.ctx, b, func(ctx context.Context) error {
+	secret := onepassword.Item{}
+	err = retry.Do(o.ctx, b, func(ctx context.Context) error {
 		var err error
-		secret, err = o.client.Secrets().Resolve(o.ctx, path)
+		secret, err = o.client.Items().Get(o.ctx, opvault.ID, opitem.ID)
 		if retryErr := o.isRetriable(err); retryErr != nil {
 			return retryErr
 		}
 		return nil
 	})
 	if err != nil {
-		if !strings.Contains(err.Error(), "no item matched") {
-			return nil, fmt.Errorf("failed to resolve 1password vault item: %w", err)
+		return nil, fmt.Errorf("failed to find 1password vault item: %w", err)
+	}
+
+	value := ""
+	for _, field := range secret.Fields {
+		if field.Title == vault.Field {
+			value = field.Value
+			break
 		}
-		o.log.Debug("secret not found", lctx.Err(err))
+	}
+
+	if value == "" {
 		return nil, ErrItemNotFound
 	}
 
 	return &Item{
-		Name:  item.Item,
-		Path:  item.Path,
-		Field: item.Field,
-		Value: secret,
+		Name:  vault.Item,
+		Path:  vault.Path,
+		Field: vault.Field,
+		Value: value,
 	}, nil
 }
 
@@ -185,7 +207,7 @@ func (o *OnePassword) UpdateItem(vault *token.Vault, value string) error {
 	b = o.backoff
 	err = retry.Do(o.ctx, b, func(ctx context.Context) error {
 		var err error
-		_, err = o.client.Items().Put(o.ctx, update)
+		update, err = o.client.Items().Put(o.ctx, update)
 		if retryErr := o.isRetriable(err); retryErr != nil {
 			return retryErr
 		}
@@ -194,6 +216,12 @@ func (o *OnePassword) UpdateItem(vault *token.Vault, value string) error {
 	if err != nil {
 		return fmt.Errorf("failed to update 1password vault item: %w", err)
 	}
+
+	o.log.Debug("updated item in 1password vault",
+		lctx.Str("vault", opitem.VaultID),
+		lctx.Str("item", vault.Item),
+		lctx.Uint32("version", update.Version),
+	)
 
 	return nil
 }
@@ -228,15 +256,20 @@ func (o *OnePassword) DeleteItem(vault *token.Vault) error {
 		return fmt.Errorf("failed to delete 1password vault item: %w", err)
 	}
 
+	o.log.Debug("deleted item in 1password vault",
+		lctx.Str("vault", opitem.VaultID),
+		lctx.Str("item", vault.Item),
+	)
+
 	return nil
 }
 
-func (o *OnePassword) findVault(item *token.Vault) (*onepassword.VaultOverview, error) {
+func (o *OnePassword) findVault(vault *token.Vault) (*onepassword.VaultOverview, error) {
 	b := o.backoff
-	vaults := []onepassword.VaultOverview{}
+	opvaults := []onepassword.VaultOverview{}
 	err := retry.Do(o.ctx, b, func(ctx context.Context) error {
 		var err error
-		vaults, err = o.client.Vaults().List(o.ctx)
+		opvaults, err = o.client.Vaults().List(o.ctx)
 		if retryErr := o.isRetriable(err); retryErr != nil {
 			return retryErr
 		}
@@ -246,22 +279,32 @@ func (o *OnePassword) findVault(item *token.Vault) (*onepassword.VaultOverview, 
 		return nil, fmt.Errorf("failed to list 1password vaults: %w", err)
 	}
 
-	vault := onepassword.VaultOverview{}
-	for _, vlt := range vaults {
-		if vlt.Title == item.Path {
-			vault = vlt
+	opvault := onepassword.VaultOverview{}
+	for _, vlt := range opvaults {
+		// match by pathID, if set
+		if vault.PathID != "" {
+			if vlt.ID == vault.PathID {
+				opvault = vlt
+				break
+			}
+
+			continue
+		}
+
+		if vlt.Title == vault.Path {
+			opvault = vlt
 			break
 		}
 	}
 
-	if vault.ID == "" {
+	if opvault.ID == "" {
 		return nil, ErrVaultNotFound
 	}
 
-	return &vault, nil
+	return &opvault, nil
 }
 
-func (o *OnePassword) findItem(vaultID string, item *token.Vault) (*onepassword.ItemOverview, error) {
+func (o *OnePassword) findItem(vaultID string, vault *token.Vault) (*onepassword.ItemOverview, error) {
 	b := o.backoff
 	opitems := []onepassword.ItemOverview{}
 	err := retry.Do(o.ctx, b, func(ctx context.Context) error {
@@ -278,8 +321,19 @@ func (o *OnePassword) findItem(vaultID string, item *token.Vault) (*onepassword.
 
 	opitem := onepassword.ItemOverview{}
 	for _, itm := range opitems {
-		if itm.Title == item.Item {
+		// match by itemID, if set
+		if vault.ItemID != "" {
+			if itm.ID == vault.ItemID {
+				opitem = itm
+				break
+			}
+
+			continue
+		}
+
+		if itm.Title == vault.Item {
 			opitem = itm
+			break
 		}
 	}
 
@@ -291,12 +345,10 @@ func (o *OnePassword) findItem(vaultID string, item *token.Vault) (*onepassword.
 }
 
 func (o *OnePassword) isRetriable(err error) error {
-	if err == nil {
-		return nil
-	}
-
-	// TODO: can't we match errors better than through string?
 	switch {
+	case err == nil:
+		return nil
+	// TODO: can't we match errors better than through string?
 	case strings.HasPrefix(err.Error(), "error resolving secret reference"):
 		return err
 	}
