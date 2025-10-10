@@ -5,7 +5,7 @@ go 1.24.3
 require (
 	github.com/1password/onepassword-sdk-go v0.3.1
 	github.com/ettle/strcase v0.2.0
-	github.com/go-playground/validator/v10 v10.27.0
+	github.com/go-playground/validator/v10 v10.28.0
 	github.com/goccy/go-yaml v1.18.0
 	github.com/hamba/cmd/v3 v3.1.0
 	github.com/hamba/logger/v2 v2.9.0
@@ -29,7 +29,7 @@ require (
 	github.com/dylibso/observe-sdk/go v0.0.0-20240828172851-9145d8ad07e1 // indirect
 	github.com/extism/go-sdk v1.7.1 // indirect
 	github.com/fatih/color v1.18.0 // indirect
-	github.com/gabriel-vasile/mimetype v1.4.8 // indirect
+	github.com/gabriel-vasile/mimetype v1.4.10 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
