@@ -15,7 +15,7 @@ require (
 	github.com/sethvargo/go-retry v0.3.0
 	github.com/stretchr/testify v1.11.1
 	github.com/urfave/cli/v3 v3.4.1
-	gitlab.com/gitlab-org/api/client-go v0.146.0
+	gitlab.com/gitlab-org/api/client-go v0.156.0
 	go.opentelemetry.io/otel/trace v1.38.0
 )
 
@@ -80,6 +80,6 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20250908214217-97024824d090 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250908214217-97024824d090 // indirect
 	google.golang.org/grpc v1.75.1 // indirect
-	google.golang.org/protobuf v1.36.9 // indirect
+	google.golang.org/protobuf v1.36.10 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
