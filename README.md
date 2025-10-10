@@ -2,11 +2,13 @@
 
 ## Purpose
 
-Token-operator regularly rotates your GitLab tokens and updates them in your **1Password** or **HashiCorp** vault,
+Token-operator regularly rotates your GitLab tokens and updates them in your **1Password**, **HashiCorp** or **Bitwarden** vault,
 in order to reduce token rotation maintenance, increase security and avoid tokens with long validity in case they get leaked.
 
 With this, the configuration files can also serve as an "inventory" of tokens, for example for regular reviews and audits.
 Fine-grained access control and auditing features of your vault instance allow you to provide safe access to your GitLab tokens.
+
+See our documentation site [https://toop.sickit.eu](https://toop.sickit.eu) for more detailed documentation.
 
 ## Get `tocli` (token-operator cli)
 
@@ -146,7 +148,7 @@ helm uninstall tocli-cron --namespace tocli
 
 ## Get the enterprise version
 
-The enterprise version supports `group` and `project` GitLab tokens as well as `hashicorp` vault.
+The enterprise version supports `group` and `project` GitLab tokens as well as `hashicorp` and `bitwarden` vaults.
 Additional features may be requested as well. 
 
 Contact us at: toop@sickit.eu

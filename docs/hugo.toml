@@ -1,0 +1,28 @@
+baseURL = 'https://toop.sickit.eu/'
+languageCode = 'en-us'
+title = 'token-operator'
+
+[module]
+    [[module.imports]]
+        path = 'github.com/McShelby/hugo-theme-relearn'
+
+[params]
+    ordersectionsby = 'weight'
+    themeVariant = ['auto', 'zen-light', 'zen-dark', 'learn', 'neon']
+
+[menu]
+    [[menu.shortcuts]]
+        name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
+        identifier = "github-repo"
+        url = "https://github.com/sick-it/token-operator"
+        weight = 10
+    [[menu.shortcuts]]
+        name = "<i class='fa-fw fab fa-gitlab'></i> GitLab repo"
+        identifier = "gitlab-repo"
+        url = "https://gitlab.com/sickit/token-operator"
+        weight = 20
+
+[outputs]
+    home = ["html", "rss"]
+    section = ["html", "rss"]
+    page = ["html", "rss"]

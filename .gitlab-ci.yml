@@ -17,6 +17,16 @@ include:
   rules:
     - if: $CI_COMMIT_TAG
 
+.pages:
+  image: hugomods/hugo:exts-0.150.0
+  before_script:
+    - hugo version
+  script:
+    - hugo --minify --source ./docs
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - !reference [.rules-release-mr, rules]
+
 go lint:
   image: golang:1.24
   before_script:
@@ -94,6 +104,21 @@ publish Helm Charts:
     - |
       curl --fail-with-body -X POST --user gitlab-ci-token:$CI_JOB_TOKEN --form "chart=@./pages/tocli-cron-$CRON_VERSION.tgz" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"
   rules:
+    - if: $CI_COMMIT_TAG
+
+build pages:
+  extends:
+    - .pages
+
+deploy pages:
+  extends:
+    - .pages
+  pages:
+    publish: docs/public
+  rules:
+    # automatically publish only on tag, allow manual publishing from main
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
     - if: $CI_COMMIT_TAG
 
 trigger renovate:
