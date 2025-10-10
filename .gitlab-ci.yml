@@ -28,7 +28,7 @@ include:
     - !reference [.rules-release-mr, rules]
 
 go lint:
-  image: golang:1.24
+  image: golang:1.25
   before_script:
     - curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh
       | sh -s -- -b $GOPATH/bin latest
@@ -39,7 +39,7 @@ go lint:
     - !reference [.rules-release-mr, rules]
 
 go test:
-  image: golang:1.24
+  image: golang:1.25
   script:
     - make test
   rules:
