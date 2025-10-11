@@ -1,9 +1,50 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.4.0] - 2025-10-11
+
+### <!-- 0 -->🚀 Merge requests
+
+- Fix: commit hugo go.sum ([24](https://gitlab.com/sickit/token-operator/-/merge_requests/24) @Pascal Sick)
+
+- Docs: add static hugo page for docs published with pages ([18](https://gitlab.com/sickit/token-operator/-/merge_requests/18) @Pascal Sick)
+
+- Feat: support unique identifiers in config ([22](https://gitlab.com/sickit/token-operator/-/merge_requests/22) @Pascal Sick)
+
+- Fix: disable yaml.Strict, allowing additional fields in config ([20](https://gitlab.com/sickit/token-operator/-/merge_requests/20) @Pascal Sick)
+
+
+### <!-- 1 -->🚀 Features
+
+- Support unique identifiers in config ([36f909b](https://gitlab.com/sickit/token-operator/-/commit/36f909b3cfc57ced6a95ce14504881cac6fb9c92) @Pascal Sick)
+
+
+### <!-- 2 -->🐛 Bug Fixes
+
+- Commit hugo go.sum ([17bd79c](https://gitlab.com/sickit/token-operator/-/commit/17bd79cc617aa0b14578aa3583b2dc04c0c26f16) @Pascal Sick)
+
+- Disable yaml.Strict, allowing additional fields in config ([2c90256](https://gitlab.com/sickit/token-operator/-/commit/2c90256ecf896d0bbc31c9b5085be0eee3d26793) @DrPsychick)
+
+
+### <!-- 4 -->📚 Documentation
+
+- Add static hugo page for docs published with pages ([5e34175](https://gitlab.com/sickit/token-operator/-/commit/5e341754d3f65a7469bab62330af570fc1bdc8f4) @Pascal Sick)
+
+
+### <!-- 8 -->⚙️ Miscellaneous Tasks
+
+- Update golang docker tag to v1.25 ([0207ac4](https://gitlab.com/sickit/token-operator/-/commit/0207ac466102132ba95dc9eb8ca07a62064908c4) @Renovate Bot)
+
+- Update module github.com/go-playground/validator/v10 to v10.28.0 ([b693cda](https://gitlab.com/sickit/token-operator/-/commit/b693cdab2fe954f017330404af9f9d76b90ed2a7) @Renovate Bot)
+
+- Update module gitlab.com/gitlab-org/api/client-go to v0.156.0 ([a164ddf](https://gitlab.com/sickit/token-operator/-/commit/a164ddf32234044cd8d2d11c25942f38daa88f1a) @Renovate Bot)
+
+
 ## [0.3.3] - 2025-09-19
 
 ### <!-- 0 -->🚀 Merge requests
+
+- Release v0.3.3 ([10](https://gitlab.com/sickit/token-operator/-/merge_requests/10) @Pascal Sick)
 
 - Fix: review feedback & refactor pipeline ([16](https://gitlab.com/sickit/token-operator/-/merge_requests/16) @Pascal Sick)
 
@@ -85,8 +126,6 @@ All notable changes to this project will be documented in this file.
 
 - Configure SAST and Secret Detection in `.gitlab-ci.yml`, creating this file if it does not already exist ([482fb20](https://gitlab.com/sickit/token-operator/-/commit/482fb2048c07570b2c0e24fbe60bc74347b45b8c) @Pascal Sick)
 
-- Configure SAST in `.gitlab-ci.yml`, creating this file if it does not already exist ([5f5f1e1](https://gitlab.com/sickit/token-operator/-/commit/5f5f1e1f5a6fd46c93315af4d5af0ccfae6b4db1) @Pascal Sick)
-
 
 ### <!-- 7 -->🧪 Testing
 
@@ -95,9 +134,18 @@ All notable changes to this project will be documented in this file.
 - Public imports ([09815e6](https://gitlab.com/sickit/token-operator/-/commit/09815e6dca2250d9435a03d306e9f24bf490439b) @DrPsychick)
 
 
+## [0.0.1] - 2025-06-19
+
+### <!-- 11 -->💼 Other
+
+- Configure SAST in `.gitlab-ci.yml`, creating this file if it does not already exist ([5f5f1e1](https://gitlab.com/sickit/token-operator/-/commit/5f5f1e1f5a6fd46c93315af4d5af0ccfae6b4db1) @Pascal Sick)
+
+
+[0.4.0]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.3..v0.4.0
 [0.3.3]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.2..v0.3.3
 [0.3.2]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.1..v0.3.2
 [0.3.1]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.0..v0.3.1
+[0.3.0]: https://gitlab.com/sickit/token-operator/-/compare/v0.0.1..v0.3.0
 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
