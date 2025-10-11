@@ -184,33 +184,26 @@ func (o *OnePassword) UpdateItem(vault *token.Vault, value string) error {
 		if retryErr := o.isRetriable(err); retryErr != nil {
 			return retryErr
 		}
-		return nil
-	})
-	if err != nil {
-		return fmt.Errorf("failed to get 1password vault item: %w", err)
-	}
 
-	// update value of matching field
-	for i, field := range update.Fields {
-		if field.Title == vault.Field {
-			update.Fields[i].Value = value
-			break
+		// update value of matching field
+		for i, field := range update.Fields {
+			if field.Title == vault.Field {
+				update.Fields[i].Value = value
+				break
+			}
 		}
-	}
 
-	o.log.Debug("updating item in 1password vault", lctx.Str("vault", opvault.ID), lctx.Str("item", vault.Item))
-	if o.dryRun {
-		o.log.Info("dry-run flag set, not updating 1password vault item", lctx.Str("vault", opvault.ID), lctx.Str("item", vault.Item))
-		return nil
-	}
+		o.log.Debug("updating item in 1password vault", lctx.Str("vault", opvault.ID), lctx.Str("item", vault.Item))
+		if o.dryRun {
+			o.log.Info("dry-run flag set, not updating 1password vault item", lctx.Str("vault", opvault.ID), lctx.Str("item", vault.Item))
+			return nil
+		}
 
-	b = o.backoff
-	err = retry.Do(o.ctx, b, func(ctx context.Context) error {
-		var err error
 		update, err = o.client.Items().Put(o.ctx, update)
 		if retryErr := o.isRetriable(err); retryErr != nil {
 			return retryErr
 		}
+
 		return nil
 	})
 	if err != nil {
