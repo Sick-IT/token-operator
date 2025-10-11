@@ -28,4 +28,12 @@ To solve these issues, 'token-operator' was born.
 3. For each token, decides if it needs rotating and if so, rotates the token and updates the vault item.
 
 
+### Supported password managers
+
+- 1Password: supported and fully open-source.
+- HashiCorp Vault: supported and requires Enterprise license.
+- Bitwarden: not supported currently.
+  Supporting it requires significant changes as Bitwarden go-sdk requires CGO which prevents cross-compiling with goreleaser.
+  https://github.com/bitwarden/sdk-sm/blob/main/languages/go/INSTRUCTIONS.md
+
 Continue to 👉 [Initial setup](./initial-setup.md)
