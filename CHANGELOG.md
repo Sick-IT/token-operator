@@ -1,9 +1,30 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.4.1] - 2025-10-11
+
+### <!-- 0 -->🚀 Merge requests
+
+- Docs: remove Bitwarden support and mention why we exclude it for now. ([27](https://gitlab.com/sickit/token-operator/-/merge_requests/27) @Pascal Sick)
+
+- Fix: when retrying update, get item again to ensure we have the latest version ([25](https://gitlab.com/sickit/token-operator/-/merge_requests/25) @Pascal Sick)
+
+
+### <!-- 2 -->🐛 Bug Fixes
+
+- When retrying update, get item again to ensure we have the latest version ([4df0aca](https://gitlab.com/sickit/token-operator/-/commit/4df0aca6b280711f35fda065553b78ad5f5f4104) @DrPsychick)
+
+
+### <!-- 4 -->📚 Documentation
+
+- Remove Bitwarden support and mention why we exclude it for now. ([546bee7](https://gitlab.com/sickit/token-operator/-/commit/546bee7a1e6e72d4999a2922c5fbf19fdcb548fd) @Pascal Sick)
+
+
 ## [0.4.0] - 2025-10-11
 
 ### <!-- 0 -->🚀 Merge requests
+
+- Release v0.4.0 ([23](https://gitlab.com/sickit/token-operator/-/merge_requests/23) @Pascal Sick)
 
 - Fix: commit hugo go.sum ([24](https://gitlab.com/sickit/token-operator/-/merge_requests/24) @Pascal Sick)
 
@@ -141,6 +162,7 @@ All notable changes to this project will be documented in this file.
 - Configure SAST in `.gitlab-ci.yml`, creating this file if it does not already exist ([5f5f1e1](https://gitlab.com/sickit/token-operator/-/commit/5f5f1e1f5a6fd46c93315af4d5af0ccfae6b4db1) @Pascal Sick)
 
 
+[0.4.1]: https://gitlab.com/sickit/token-operator/-/compare/v0.4.0..v0.4.1
 [0.4.0]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.3..v0.4.0
 [0.3.3]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.2..v0.3.3
 [0.3.2]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.1..v0.3.2
