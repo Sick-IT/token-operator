@@ -14,7 +14,11 @@ All notable changes to this project will be documented in this file.
 # so that it puts the commit message in the first line, to be parsable as conventional commit.
 body = """
 {% if version -%}
-    ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+    {% if previous.version -%}
+    ## [{{ version | trim_start_matches(pat="v") }}]({{ get_env(name="CI_PROJECT_URL") }}/-/compare/{{ previous.version }}..{{ version }}) - {{ timestamp | date(format="%Y-%m-%d") }}
+    {% else -%}
+    ## {{ version | trim_start_matches(pat="v") }} - {{ timestamp | date(format="%Y-%m-%d") }}
+    {% endif -%}
 {% else -%}
     ## [Unreleased]
 {% endif -%}
@@ -24,30 +28,17 @@ body = """
         {% if commit.merge_commit and commit.remote.pr_title -%}
         - {{ commit.remote.pr_title | split(pat="\n") | first | upper_first | trim }} \
             ([{{ commit.remote.pr_number }}]({{ get_env(name="CI_PROJECT_URL") }}/-/merge_requests/{{ commit.remote.pr_number }}) \
-            @{{ commit.author.name }})
+            @{% if commit.remote.username %}{{ commit.remote.username }}{% else %}{{ commit.author.name }}{% endif %})
         {% else -%}
         - {{ commit.message | split(pat="\n") | first | upper_first | trim }} \
             ([{{ commit.id | truncate(length=7, end="") }}]({{ get_env(name="CI_PROJECT_URL") }}/-/commit/{{ commit.id }}) \
-            @{{ commit.author.name }})
+            @{% if commit.remote.username %}{{ commit.remote.username }}{% else %}{{ commit.author.name }}{% endif %})
         {% endif -%}
     {% endfor %}
 {% endfor %}\n
 """
 # template for the changelog footer
 footer = """
-{% for release in releases -%}
-    {% if release.version -%}
-        {% if release.previous.version -%}
-            [{{ release.version | trim_start_matches(pat="v") }}]: \
-                {{ get_env(name="CI_PROJECT_URL") }}\
-                /-/compare/{{ release.previous.version }}..{{ release.version }}
-        {% endif -%}
-    {% else -%}
-        [unreleased]: {{ get_env(name="CI_PROJECT_URL") }}\
-            /-/compare/{{ release.previous.version }}..HEAD
-    {% endif -%}
-{% endfor %}
-
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n
 
