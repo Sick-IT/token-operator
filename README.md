@@ -187,4 +187,4 @@ flowchart TD
 
 [GPL-3](./LICENSE)
 
-[](https://umami.prod.k8s.rootcrew.net/p/kckx3eX6m)
+![](https://umami.prod.k8s.rootcrew.net/p/kckx3eX6m)
