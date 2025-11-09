@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Token-operator regularly rotates your GitLab tokens and updates them in your **1Password** or **HashiCorp** vault,
+Token Operator regularly rotates your GitLab tokens and updates them in your **1Password** or **HashiCorp** vault,
 in order to reduce token rotation maintenance, increase security and avoid tokens with long validity in case they get leaked.
 
 With this, the configuration files can also serve as an "inventory" of tokens, for example for regular reviews and audits.
@@ -153,6 +153,9 @@ Additional features may be requested as well.
 
 Contact us at: toop@sickit.eu
 
+If you're interested in using Token Operator with [Bitwarden](https://bitwarden.com/) or [Keeper](https://www.keepersecurity.com/), 
+please drop us an email.
+
 ## How it works
 
 This shows the application flow, checking the vault item first, so that it fails early if we don't have access to the vault.
@@ -183,3 +186,5 @@ flowchart TD
 ## License
 
 [GPL-3](./LICENSE)
+
+[](https://umami.prod.k8s.rootcrew.net/p/kckx3eX6m)
