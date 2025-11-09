@@ -1,0 +1,21 @@
+    <!-- compat way of adding custom scripts in old Hugo documentation -->
+    {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
+
+    {{- $filePath := "css/custom.css" }}
+    {{- with (resources.Get (printf "/%s" $filePath)) }}
+    <link href="{{ .RelPermalink }}{{ $assetBusting }}" rel="stylesheet">
+    {{- else }}
+    {{- if (fileExists (printf "/static/%s" $filePath)) }}
+    <link href="{{ printf "%s" $filePath | relURL }}{{ $assetBusting }}" rel="stylesheet">
+    {{- end }}
+    {{- end }}
+
+    {{- $filePath := "js/custom.js" }}
+    {{- with (resources.Get (printf "/%s" $filePath)) }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- else }}
+    {{- if (fileExists (printf "/static/%s" $filePath)) }}
+    <script src="{{ printf "%s" $filePath | relURL }}{{ $assetBusting }}" defer></script>
+    {{- end }}
+    {{- end }}
+    <script defer src="https://umami.prod.k8s.rootcrew.net/script.js" data-website-id="f007b39b-07d7-4d27-9bfb-671cf10c5223"></script>
