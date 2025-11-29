@@ -130,7 +130,7 @@ func (g *GitLab) CreateToken(config *token.Config) (*token.Token, error) {
 		Description: tok.Description,
 		Scopes:      tok.Scopes,
 		Type:        TypePersonal,
-		Owner:       strconv.Itoa(int(tok.UserID)),
+		Owner:       strconv.FormatInt(tok.UserID, 10),
 		Expiration:  expire,
 	}, nil
 }
@@ -162,7 +162,7 @@ func (g *GitLab) RotateToken(config *token.Config) (*token.Token, error) {
 			Description: config.Source.Description,
 			Scopes:      config.Source.Scopes,
 			Type:        TypePersonal,
-			Owner:       strconv.Itoa(int(gltoken.UserID)),
+			Owner:       strconv.FormatInt(gltoken.UserID, 10),
 			Expiration:  time.Now().Add(config.Rotation.Validity),
 			Value:       "dry-run",
 		}, nil
@@ -200,7 +200,7 @@ func (g *GitLab) RotateToken(config *token.Config) (*token.Token, error) {
 		Description: tok.Description,
 		Scopes:      tok.Scopes,
 		Type:        TypePersonal,
-		Owner:       strconv.Itoa(int(tok.UserID)),
+		Owner:       strconv.FormatInt(tok.UserID, 10),
 		Value:       tok.Token,
 		Expiration:  expire,
 	}, nil
