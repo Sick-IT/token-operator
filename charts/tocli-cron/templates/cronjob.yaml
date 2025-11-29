@@ -93,7 +93,7 @@ spec:
           volumes:
             - configMap:
                 defaultMode: 420
-                name: {{ include "tocli-cron.fullname" . }}
+                name: {{ default (include "tocli-cron.fullname" .) .Values.config.existingConfigMap }}
               name: config
           {{- with .Values.volumes }}
             {{- toYaml . | nindent 12 }}

@@ -1,6 +1,6 @@
 # Token Operator CLI cron Helm Chart: tocli-cron
 
-![Version: 0.0.2](https://img.shields.io/badge/Version-0.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.2](https://img.shields.io/badge/AppVersion-0.3.2-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.2](https://img.shields.io/badge/AppVersion-0.4.2-informational?style=flat-square)
 
 ## What is Token Operator?
 
@@ -46,9 +46,10 @@ helm uninstall tocli-cron --namespace tocli
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| config | object | `{"default_rotation":{"rotate_before":"168h","validity":"888h"},"tokens":[{"name":"mytoken","source":{"description":"describe what you use it for or where you use it","name":"my-token","scopes":["read_api"],"type":"personal"},"state":"active","vault":{"field":"password","item":"my-gitlab-token","path":"my-token-vault"}}]}` | Token-operator configuration, see https://gitlab.com/sickit/token-operator/-/blob/main/pkg/toop/full-config.yaml |
+| config | object | `{"default_rotation":{"rotate_before":"168h","validity":"888h"},"existingConfigMap":null,"tokens":[{"name":"mytoken","source":{"description":"describe what you use it for or where you use it","name":"my-token","scopes":["read_api"],"type":"personal"},"state":"active","vault":{"field":"password","item":"my-gitlab-token","path":"my-token-vault"}}]}` | Token-operator configuration, see https://gitlab.com/sickit/token-operator/-/blob/main/pkg/toop/full-config.yaml |
 | config.default_rotation.rotate_before | string | `"168h"` | Time in hours when to rotate a token before it expires. Default: 168h (= 1 week). Also supports minutes (m) and seconds (s). |
 | config.default_rotation.validity | string | `"888h"` | GitLab token validity in hours when rotating a token. Default: 888h (= 5 weeks). Also supports minutes (m) and seconds (s). |
+| config.existingConfigMap | string | `nil` | use existing ConfigMap containing config.yaml |
 | config.tokens[0].name | string | `"mytoken"` | Token name, mentioned in logs. |
 | config.tokens[0].source.description | string | `"describe what you use it for or where you use it"` | GitLab token description. |
 | config.tokens[0].source.name | string | `"my-token"` | GitLab token name. |
@@ -81,7 +82,7 @@ helm uninstall tocli-cron --namespace tocli
 | tolerations | list | `[]` |  |
 | vault.existingSecret | object | `{}` | Reference an existing Secret, managed for example with external-secrets. Recommended. |
 | vault.token | string | `""` | Vault token, plain text. Not recommended. |
-| vault.url | string | `""` | Vault URL, required only for Hashicorp Vault. |
+| vault.url | string | `""` | Vault URL, required only for HashiCorp Vault. |
 | volumeMounts | list | `[]` |  |
 | volumes | list | `[]` |  |
 
@@ -92,3 +93,6 @@ Using `chart-testing` to lint, install and test the chart on a local Kubernetes 
 ```shell
 ct lint-and-install --all
 ```
+
+## Credits
+* tocli-cron icon from [Those Icons](https://www.flaticon.com/de/autoren/those-icons) found on  [FlatIcon](https://www.flaticon.com/)
