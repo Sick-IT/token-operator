@@ -1,9 +1,55 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [0.4.1] - 2025-10-11
+## [0.4.2](https://gitlab.com/sickit/token-operator/-/compare/v0.4.1..v0.4.2) - 2025-11-29
 
 ### <!-- 0 -->🚀 Merge requests
+
+- Fix: safe int/int64 to string conversion consistently ([37](https://gitlab.com/sickit/token-operator/-/merge_requests/37) @Pascal Sick)
+
+- Docs: fix pixel include ([34](https://gitlab.com/sickit/token-operator/-/merge_requests/34) @Pascal Sick)
+
+- Docs: update readme, add note about bitwarden and keeper. ([33](https://gitlab.com/sickit/token-operator/-/merge_requests/33) @Pascal Sick)
+
+- Docs: add script to see docs usage ([32](https://gitlab.com/sickit/token-operator/-/merge_requests/32) @Pascal Sick)
+
+- Docs: standard changelog with inline links ([28](https://gitlab.com/sickit/token-operator/-/merge_requests/28) @Pascal Sick)
+
+
+### <!-- 2 -->🐛 Bug Fixes
+
+- Safe int/int64 to string conversion consistently ([fdb074b](https://gitlab.com/sickit/token-operator/-/commit/fdb074bcd30eec33f616ef51e9b154f8f1608943) @Pascal Sick)
+
+- Int64 adjustments, lint and test on MR pipeline ([c86af32](https://gitlab.com/sickit/token-operator/-/commit/c86af32e9846de4f37a6dc9147ec801142d80ef8) @Pascal Sick)
+
+
+### <!-- 4 -->📚 Documentation
+
+- Fix pixel include ([736caf6](https://gitlab.com/sickit/token-operator/-/commit/736caf6ddd1ce21f5329ba1bf71dc89d9a0eeaf8) @Pascal Sick)
+
+- Update readme, add note about bitwarden and keeper. ([b9ac0e9](https://gitlab.com/sickit/token-operator/-/commit/b9ac0e98cb50b1bf28ede65a65ab481a790016fd) @Pascal Sick)
+
+- Add script to see docs usage ([1213e6f](https://gitlab.com/sickit/token-operator/-/commit/1213e6fbd0d5e15aaaa93f2c170de85816a44c80) @Pascal Sick)
+
+- Standard changelog with inline links ([82000ff](https://gitlab.com/sickit/token-operator/-/commit/82000ffaf3f5944435531fc4a4f25862b88349c7) @Pascal Sick)
+
+
+### <!-- 8 -->⚙️ Miscellaneous Tasks
+
+- Update module gitlab.com/gitlab-org/api/client-go to v1 ([0755533](https://gitlab.com/sickit/token-operator/-/commit/07555338627939a96c839c4099ea528a7aee6072) @Renovate Bot)
+
+- Update module github.com/urfave/cli/v3 to v3.6.1 ([1d8f3ea](https://gitlab.com/sickit/token-operator/-/commit/1d8f3eaad3e77721a60c121a997fb9f3f66ca867) @Renovate Bot)
+
+- Update module github.com/goccy/go-yaml to v1.19.0 ([c089068](https://gitlab.com/sickit/token-operator/-/commit/c08906850ff91b6b178bd164ce740657318a7182) @Renovate Bot)
+
+- Update module gitlab.com/gitlab-org/api/client-go to v0.161.1 ([d3f8cf3](https://gitlab.com/sickit/token-operator/-/commit/d3f8cf3944bf2f829565a3038e9ba2a5bb70effb) @Renovate Bot)
+
+
+## [0.4.1](https://gitlab.com/sickit/token-operator/-/compare/v0.4.0..v0.4.1) - 2025-10-11
+
+### <!-- 0 -->🚀 Merge requests
+
+- Release v0.4.1 ([26](https://gitlab.com/sickit/token-operator/-/merge_requests/26) @Pascal Sick)
 
 - Docs: remove Bitwarden support and mention why we exclude it for now. ([27](https://gitlab.com/sickit/token-operator/-/merge_requests/27) @Pascal Sick)
 
@@ -20,7 +66,7 @@ All notable changes to this project will be documented in this file.
 - Remove Bitwarden support and mention why we exclude it for now. ([546bee7](https://gitlab.com/sickit/token-operator/-/commit/546bee7a1e6e72d4999a2922c5fbf19fdcb548fd) @Pascal Sick)
 
 
-## [0.4.0] - 2025-10-11
+## [0.4.0](https://gitlab.com/sickit/token-operator/-/compare/v0.3.3..v0.4.0) - 2025-10-11
 
 ### <!-- 0 -->🚀 Merge requests
 
@@ -61,7 +107,7 @@ All notable changes to this project will be documented in this file.
 - Update module gitlab.com/gitlab-org/api/client-go to v0.156.0 ([a164ddf](https://gitlab.com/sickit/token-operator/-/commit/a164ddf32234044cd8d2d11c25942f38daa88f1a) @Renovate Bot)
 
 
-## [0.3.3] - 2025-09-19
+## [0.3.3](https://gitlab.com/sickit/token-operator/-/compare/v0.3.2..v0.3.3) - 2025-09-19
 
 ### <!-- 0 -->🚀 Merge requests
 
@@ -95,7 +141,7 @@ All notable changes to this project will be documented in this file.
 - Update module github.com/hamba/cmd/v3 to v3.1.0 ([3cc5be5](https://gitlab.com/sickit/token-operator/-/commit/3cc5be5f9651e70430c44aa1205691c77a32c902) @Renovate Bot)
 
 
-## [0.3.2] - 2025-08-31
+## [0.3.2](https://gitlab.com/sickit/token-operator/-/compare/v0.3.1..v0.3.2) - 2025-08-31
 
 ### <!-- 0 -->🚀 Merge requests
 
@@ -109,7 +155,7 @@ All notable changes to this project will be documented in this file.
 - Bump helm chart and app version ([e539f38](https://gitlab.com/sickit/token-operator/-/commit/e539f38d6532a1f1c15029574cbfd6fb9450dd4b) @Pascal Sick)
 
 
-## [0.3.1] - 2025-08-31
+## [0.3.1](https://gitlab.com/sickit/token-operator/-/compare/v0.3.0..v0.3.1) - 2025-08-31
 
 ### <!-- 0 -->🚀 Merge requests
 
@@ -141,7 +187,7 @@ All notable changes to this project will be documented in this file.
 - Rename repo/project ([d3b7981](https://gitlab.com/sickit/token-operator/-/commit/d3b7981d1b2ebe1130edadd4c436041f529697b0) @DrPsychick)
 
 
-## [0.3.0] - 2025-07-21
+## [0.3.0](https://gitlab.com/sickit/token-operator/-/compare/v0.0.1..v0.3.0) - 2025-07-21
 
 ### <!-- 11 -->💼 Other
 
@@ -155,19 +201,11 @@ All notable changes to this project will be documented in this file.
 - Public imports ([09815e6](https://gitlab.com/sickit/token-operator/-/commit/09815e6dca2250d9435a03d306e9f24bf490439b) @DrPsychick)
 
 
-## [0.0.1] - 2025-06-19
+## 0.0.1 - 2025-06-19
 
 ### <!-- 11 -->💼 Other
 
 - Configure SAST in `.gitlab-ci.yml`, creating this file if it does not already exist ([5f5f1e1](https://gitlab.com/sickit/token-operator/-/commit/5f5f1e1f5a6fd46c93315af4d5af0ccfae6b4db1) @Pascal Sick)
-
-
-[0.4.1]: https://gitlab.com/sickit/token-operator/-/compare/v0.4.0..v0.4.1
-[0.4.0]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.3..v0.4.0
-[0.3.3]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.2..v0.3.3
-[0.3.2]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.1..v0.3.2
-[0.3.1]: https://gitlab.com/sickit/token-operator/-/compare/v0.3.0..v0.3.1
-[0.3.0]: https://gitlab.com/sickit/token-operator/-/compare/v0.0.1..v0.3.0
 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
