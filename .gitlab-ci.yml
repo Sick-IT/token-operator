@@ -24,7 +24,7 @@ include:
   script:
     - hugo --minify --source ./docs
   rules:
-    - if: $CI_COMMIT_BRANCH
+    - !reference [.rules-mr, rules]
     - !reference [.rules-release-mr, rules]
 
 go lint:
@@ -35,7 +35,7 @@ go lint:
   script:
     - make lint
   rules:
-    - if: $CI_COMMIT_BRANCH
+    - !reference [.rules-mr, rules]
     - !reference [.rules-release-mr, rules]
 
 go test:
@@ -43,7 +43,7 @@ go test:
   script:
     - make test
   rules:
-    - if: $CI_COMMIT_BRANCH
+    - !reference [.rules-mr, rules]
     - !reference [.rules-release-mr, rules]
 
 go build (goreleaser snapshot):

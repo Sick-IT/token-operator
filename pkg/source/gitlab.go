@@ -64,7 +64,7 @@ func (g *GitLab) findPersonalToken(source *token.Source) (*gitlab.PersonalAccess
 	gltoken := &gitlab.PersonalAccessToken{}
 	for _, tok := range toks {
 		if tok.Name == source.Name {
-			g.log.Debug("matching personal token", lctx.Str("name", tok.Name), lctx.Int("id", tok.ID))
+			g.log.Debug("matching personal token", lctx.Str("name", tok.Name), lctx.Int64("id", tok.ID))
 			gltoken = tok
 			break
 		}

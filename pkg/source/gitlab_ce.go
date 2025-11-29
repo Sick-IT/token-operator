@@ -130,7 +130,7 @@ func (g *GitLab) CreateToken(config *token.Config) (*token.Token, error) {
 		Description: tok.Description,
 		Scopes:      tok.Scopes,
 		Type:        TypePersonal,
-		Owner:       strconv.Itoa(tok.UserID),
+		Owner:       strconv.Itoa(int(tok.UserID)),
 		Expiration:  expire,
 	}, nil
 }
@@ -156,13 +156,13 @@ func (g *GitLab) RotateToken(config *token.Config) (*token.Token, error) {
 	}
 
 	if g.dryRun {
-		g.log.Info("dry-run flag set, not rotating token for user", lctx.Str("name", config.Source.Name), lctx.Int("userID", gltoken.UserID))
+		g.log.Info("dry-run flag set, not rotating token for user", lctx.Str("name", config.Source.Name), lctx.Int64("userID", gltoken.UserID))
 		return &token.Token{
 			Name:        config.Source.Name,
 			Description: config.Source.Description,
 			Scopes:      config.Source.Scopes,
 			Type:        TypePersonal,
-			Owner:       strconv.Itoa(gltoken.UserID),
+			Owner:       strconv.Itoa(int(gltoken.UserID)),
 			Expiration:  time.Now().Add(config.Rotation.Validity),
 			Value:       "dry-run",
 		}, nil
@@ -188,7 +188,7 @@ func (g *GitLab) RotateToken(config *token.Config) (*token.Token, error) {
 		g.log.Error("failed to rotate token", lctx.Str("name", config.Source.Name), lctx.Str("status", resp.Status))
 		return nil, ErrTokenRotationFailed
 	}
-	g.log.Debug("rotated personal token", lctx.Str("name", tok.Name), lctx.Int("id", tok.ID))
+	g.log.Debug("rotated personal token", lctx.Str("name", tok.Name), lctx.Int64("id", tok.ID))
 
 	expire, err := time.Parse(time.DateOnly, tok.ExpiresAt.String())
 	if err != nil {
@@ -200,7 +200,7 @@ func (g *GitLab) RotateToken(config *token.Config) (*token.Token, error) {
 		Description: tok.Description,
 		Scopes:      tok.Scopes,
 		Type:        TypePersonal,
-		Owner:       strconv.Itoa(tok.UserID),
+		Owner:       strconv.Itoa(int(tok.UserID)),
 		Value:       tok.Token,
 		Expiration:  expire,
 	}, nil
@@ -217,7 +217,7 @@ func (g *GitLab) DeleteToken(source *token.Source) error {
 	}
 
 	if g.dryRun {
-		g.log.Info("dry-run flag set, not deleting token for user", lctx.Str("name", source.Name), lctx.Int("userID", gltoken.UserID))
+		g.log.Info("dry-run flag set, not deleting token for user", lctx.Str("name", source.Name), lctx.Int64("userID", gltoken.UserID))
 		return nil
 	}
 
