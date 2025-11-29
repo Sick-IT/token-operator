@@ -1,9 +1,23 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.4.3](https://gitlab.com/sickit/token-operator/-/compare/v0.4.2..v0.4.3) - 2025-11-29
+
+### <!-- 0 -->🚀 Merge requests
+
+- Chore: update chart to tocli 0.4.2 ([38](https://gitlab.com/sickit/token-operator/-/merge_requests/38) @Pascal Sick)
+
+
+### <!-- 8 -->⚙️ Miscellaneous Tasks
+
+- Update chart to tocli 0.4.2 ([f546209](https://gitlab.com/sickit/token-operator/-/commit/f5462096994b0954ace27df8403e389e03d95c5b) @Pascal Sick)
+
+
 ## [0.4.2](https://gitlab.com/sickit/token-operator/-/compare/v0.4.1..v0.4.2) - 2025-11-29
 
 ### <!-- 0 -->🚀 Merge requests
+
+- Release v0.4.2 ([29](https://gitlab.com/sickit/token-operator/-/merge_requests/29) @Pascal Sick)
 
 - Fix: safe int/int64 to string conversion consistently ([37](https://gitlab.com/sickit/token-operator/-/merge_requests/37) @Pascal Sick)
 
