@@ -6,7 +6,7 @@ require (
 	github.com/1password/onepassword-sdk-go v0.3.1
 	github.com/ettle/strcase v0.2.0
 	github.com/go-playground/validator/v10 v10.28.0
-	github.com/goccy/go-yaml v1.18.0
+	github.com/goccy/go-yaml v1.19.0
 	github.com/hamba/cmd/v3 v3.1.0
 	github.com/hamba/logger/v2 v2.9.0
 	github.com/hamba/pkg/v2 v2.14.0
