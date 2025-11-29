@@ -15,7 +15,7 @@ require (
 	github.com/sethvargo/go-retry v0.3.0
 	github.com/stretchr/testify v1.11.1
 	github.com/urfave/cli/v3 v3.4.1
-	gitlab.com/gitlab-org/api/client-go v0.156.0
+	gitlab.com/gitlab-org/api/client-go v0.161.1
 	go.opentelemetry.io/otel/trace v1.38.0
 )
 
