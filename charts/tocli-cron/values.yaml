@@ -46,6 +46,8 @@ vault:
 # see https://gitlab.com/sickit/token-operator/-/blob/main/README.md
 # -- Token-operator configuration, see https://gitlab.com/sickit/token-operator/-/blob/main/pkg/toop/full-config.yaml
 config:
+  # -- use existing ConfigMap containing config.yaml
+  existingConfigMap:
   default_rotation:
     # -- Time in hours when to rotate a token before it expires.
     # Default: 168h (= 1 week). Also supports minutes (m) and seconds (s).

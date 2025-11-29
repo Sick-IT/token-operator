@@ -1,0 +1,20 @@
+fullnameOverride: "test-tocli-chart"
+
+source:
+  existingSecret:
+    name: "secret-name"
+    key: "source-token"
+  url: "https://gitlab.com/api/v4"
+
+vault:
+  existingSecret:
+    name: "secret-name"
+    key: "vault-token"
+  url: ""
+
+# Configuration for token-operator CLI,
+# see https://gitlab.com/sickit/token-operator/-/blob/main/README.md
+# -- Token-operator configuration, see https://gitlab.com/sickit/token-operator/-/blob/main/pkg/toop/full-config.yaml
+config:
+  # -- use existing ConfigMap containing config.yaml
+  existingConfigMap: existing-config-map

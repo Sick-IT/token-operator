@@ -5,8 +5,10 @@ metadata:
     {{- include "tocli-cron.labels" . | nindent 4 }}
 apiVersion: v1
 data:
+  {{- if not .Values.config.existingConfigMap }}
   config.yaml: |-
     {{- toYaml .Values.config | nindent 4 }}
+  {{- end }}
   source_url: {{ .Values.source.url | quote }}
   {{- with .Values.vault.url }}
   vault_url: {{ . | quote}}

@@ -21,3 +21,7 @@ build:
 .PHONY: goreleaser-snapshot
 goreleaser-snapshot:
 	goreleaser release --snapshot --clean
+
+.PHONY: chart-lint
+chart-lint:
+	ct lint --all

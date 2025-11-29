@@ -2,8 +2,10 @@ apiVersion: v2
 name: tocli-cron
 description: A Helm chart run run token-operator CLI in a regular cron job.
 type: application
-version: 0.0.2
-appVersion: 0.3.2
+version: 0.1.0
+appVersion: 0.4.2
+home: https://gitlab.com/sickit/token-operator/-/tree/main/charts/tocli-cron
+icon: https://gitlab.com/sickit/token-operator/-/raw/main/charts/tocli-cron/icon.png
 maintainers:
   - name: DrPsychick
     email: drpsychick@drsick.net
